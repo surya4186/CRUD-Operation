@@ -33,6 +33,16 @@ public class MysqlDemo {
 			switch (choice) {
 			case 1:
 				System.out.println("Insert new Data:");
+				System.out.println("Enter the name");
+				name=scan.nextLine();
+				System.out.println("Enter the age");
+				age=scan.nextInt();
+				System.out.println("Enter the city");
+				city=scan.nextLine();
+				quary="insert into users (NAME,Age,City) valuse(?,?,?)";
+				stmt=con.prepareStatement(quary);
+//				stmt.setString(1,name);
+//				stmt.setInt(2,age);
 
 				break;
 			case 2:
@@ -44,6 +54,20 @@ public class MysqlDemo {
 				break;
 			case 4:
 				System.out.println("select the data");
+				quary="SELECT ID,NAME,Age,CITY from users";
+				rs=stmt.executeQuery(quary);
+				while(rs.next()) {
+					id=rs.getInt("ID");
+					age=rs.getInt("Age");
+					name=rs.getString("NAME");
+					city=rs.getString("City");
+					System.out.print(id+" ");
+					System.out.print(age+" ");
+					System.out.print(name+" ");
+					System.out.print(city+" ");
+					System.out.println();
+					
+				}
 				break;
 			case 5:
 				System.exit(0);
