@@ -2,6 +2,7 @@ package crud;
 
 import java.sql.*;
 import java.util.Scanner;
+import java.sql.SQLException;
 
 public class MysqlDemo {
 
@@ -34,39 +35,66 @@ public class MysqlDemo {
 			case 1:
 				System.out.println("Insert new Data:");
 				System.out.println("Enter the name");
-				name=scan.nextLine();
+				name = str.nextLine();
 				System.out.println("Enter the age");
-				age=scan.nextInt();
+				age = scan.nextInt();
 				System.out.println("Enter the city");
-				city=scan.nextLine();
-				quary="insert into users (NAME,Age,City) valuse(?,?,?)";
-				stmt=con.prepareStatement(quary);
-//				stmt.setString(1,name);
-//				stmt.setInt(2,age);
+				city = str.nextLine();
+				quary = "insert into users (NAME,Age,CITY) values(?,?,?)";
+				ps = con.prepareStatement(quary);
+				ps.setString(1, name);
+				ps.setInt(2, age);
+				ps.setString(3, city);
+				ps.executeUpdate();
+				System.out.println("insert success");
 
 				break;
 			case 2:
 				System.out.println("Update Data:");
+				System.out.println("Enter the Id");
+				id = scan.nextInt();
+				System.out.println("Enter the name");
+				name = str.nextLine();
+				System.out.println("Enter the age");
+				age = scan.nextInt();
+				System.out.println("Enter the city");
+				city = str.nextLine();
+				quary = "update users set NAME=?,Age=?,CITY=? where ID=?";
+				ps = con.prepareStatement(quary);
+				ps.setString(1, name);
+				ps.setInt(2, age);
+				ps.setString(3, city);
+				ps.setInt(4, id);
+				ps.executeUpdate();
+				System.out.println("Data update success");
 
 				break;
 			case 3:
 				System.out.println("deleting Data:");
+				System.out.println("Enter the Id");
+				id = scan.nextInt();
+				quary = "delete from users where ID=?";
+				ps = con.prepareStatement(quary);
+				ps.setInt(1, id);
+				ps.executeUpdate();
+				System.out.println("Data delete success");
 				break;
 			case 4:
 				System.out.println("select the data");
-				quary="SELECT ID,NAME,Age,CITY from users";
-				rs=stmt.executeQuery(quary);
-				while(rs.next()) {
-					id=rs.getInt("ID");
-					age=rs.getInt("Age");
-					name=rs.getString("NAME");
-					city=rs.getString("City");
-					System.out.print(id+" ");
-					System.out.print(age+" ");
-					System.out.print(name+" ");
-					System.out.print(city+" ");
+				quary = "SELECT ID,NAME,Age,CITY from users";
+				rs = stmt.executeQuery(quary);
+				while (rs.next()) {
+					id = rs.getInt("ID");
+					age = rs.getInt("Age");
+					name = rs.getString("NAME");
+					city = rs.getString("City");
+					System.out.print(id + " ");
+					System.out.print(name + " ");
+					System.out.print(age + " ");
+
+					System.out.print(city + " ");
 					System.out.println();
-					
+
 				}
 				break;
 			case 5:
