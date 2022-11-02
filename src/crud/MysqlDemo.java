@@ -11,7 +11,7 @@ public class MysqlDemo {
 		Class.forName("com.mysql.jdbc.Driver");
 		String url = "jdbc:mysql://localhost:3306/student?characterEncoding=utf8";
 		String username = "root";
-		String password = "1234";
+		String password = "1357";
 		Connection con = DriverManager.getConnection(url, username, password);
 		Statement stmt = con.createStatement();
 		ResultSet rs;
@@ -107,10 +107,5 @@ public class MysqlDemo {
 		}
 
 	}
-
-//	private static Connection DriverManager(String url, String username, String password) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
 
 }
