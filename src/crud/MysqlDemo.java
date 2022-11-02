@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class MysqlDemo {
 
 	public static void main(String[] args) throws Exception {
-		// TODO Auto-generated method stub
+
 		Class.forName("com.mysql.jdbc.Driver");
 		String url = "jdbc:mysql://localhost:3306/student?characterEncoding=utf8";
 		String username = "root";
@@ -16,7 +16,6 @@ public class MysqlDemo {
 		Statement stmt = con.createStatement();
 		ResultSet rs;
 		PreparedStatement ps;
-
 		String quary = " ";
 		int id, age, choice;
 		String name, city;
